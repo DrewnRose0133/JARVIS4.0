@@ -1,22 +1,28 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using System;
+using System.Threading.Tasks;
+using JARVIS.Config;
+using JARVIS.Devices;
+using Microsoft.Extensions.Hosting;
 
+namespace JARVIS
+{
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
 
+            var builder = Host.CreateApplicationBuilder(args);
 
+            builder.Services.AddJarvisServices(builder.Configuration);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+            var app = builder.Build();
+            // … configure middleware, endpoints, etc. …
+            app.Run();
+        }
+    }
+}
 
 
 
